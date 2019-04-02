@@ -17,10 +17,11 @@ def reverse_list():
 
 
 def main(): 
-	parser = argparse.ArgumentParser()
+	parse = argparse.ArgumentParser()
 	parse.add_argument("list", nargs='*', help='Enter all the items you want to reverse.')
 	starting_list = parse.parse_args()
-	reversed_list()
+	print(starting_list)
+	#reversed_list()
 
 
 if __name__ == '__main__':
