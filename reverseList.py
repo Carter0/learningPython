@@ -1,24 +1,33 @@
-#!/usr/local/bin/python3
-
+#!/usr/bin/env python3
 import argparse
 
-# Reverse a list of whatever without using some kind of reverse list function
-# Just starting working in python, thought this was a good introduction to programming in the language
-# Also introduction to parsing command line arguments in python, which proved to be the far more time consuming task.
 
-def reverse_list(starting_list):
-	reversed_list = []
-	while len(starting_list) != 0 :
-		reversed_list.append(starting_list.pop())
-	return reversed_list
+def naive_reverse(input_list: [str]):
+    new_list = []
+    size = len(input_list) - 1
+    for i in range(0, len(input_list)):
+        new_list.append(input_list[size - i])
+    return new_list
 
 
-def main(): 
-	parse = argparse.ArgumentParser()
-	parse.add_argument("starting_list", nargs='*', help='Enter all the items you want to reverse.')
-	args = parse.parse_args()
-	print(reverse_list(args.starting_list))
+def ergonomic_reverse(input_list: [str]):
+    return input_list[::-1]
 
 
-if __name__ == '__main__':
-	main()
+if __name__ == "__main__":
+    # print(ergonomic_reverse(["logs", "want", "to", "be", "happy"]))
+    argsparsed = argparse.ArgumentParser(description='Reverse dem Lists')
+    argsparsed.add_argument(
+        '-n', '--naive', help='A naive implementation of reversing', type=str)
+    argsparsed.add_argument(
+        '-f', '--fn', help='Python\'s fancy reversing syntax', type=str)
+
+    args = argsparsed.parse_args()
+    if args.naive:
+        inpt = list(args.naive.split(','))
+        print(naive_reverse(inpt))
+    elif args.fn:
+        inpt = list(args.fn.split(','))
+        print(ergonomic_reverse(inpt))
+    else:
+        print("Enter a valid input.")
