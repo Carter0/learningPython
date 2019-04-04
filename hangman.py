@@ -28,7 +28,6 @@ def remove_char(char, word):
 	return word
 
 def ask_input():
-	char = ""
 	while True:
 		print("Enter a char to print: ")
 		char = input()
@@ -39,7 +38,6 @@ def ask_input():
 			print("You can only enter a char")
 
 def game_setup(word, lives):
-	game_over = False;
 	while True:
 		game_over = is_game_over(lives, word)
 		if game_over == True:
