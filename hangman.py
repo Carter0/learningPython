@@ -5,7 +5,7 @@ import argparse
 # No front end or GUI for this. Just input word and then guess word.
 
 def is_game_over(lives, word):
-	if lives == 0:
+	if lives <= 0:
 		print("You ran out of lives!")
 		return True
 	elif not word:
@@ -24,6 +24,7 @@ def lose_life(lives):
 def remove_char(char, word):
 	while char in word:
 		word.remove(char)
+		print("You removed an " + char + "!")
 	return word
 
 def ask_input():
@@ -31,7 +32,7 @@ def ask_input():
 	while True:
 		print("Enter a char to print: ")
 		char = input()
-		if char == len(char) * char[0] or char.isdigit() == True:
+		if char == len(char) * char[0]:
 			print("The char you wrote is: " + char)
 			return char
 		else:
@@ -43,7 +44,6 @@ def game_setup(word, lives):
 		game_over = is_game_over(lives, word)
 		if game_over == True:
 			break
-		print(word)
 		char = ask_input()
 		# Guess char code
 		if char in word:
@@ -64,9 +64,6 @@ def main():
 
 if __name__ == '__main__':
 	main()
-
-# Add in the variables above as arguments to the program. I think that is way forward.
-
 
 
 
