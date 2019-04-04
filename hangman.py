@@ -4,47 +4,52 @@ import argparse
 # Decided to try making hangman, thought it could be fun before I get to some web stuff.
 # No front end or GUI for this. Just input word and then guess word.
 
-
-
-
-def guess_char(char, word, lives):
-	if char in word:
-		remove_char(char)
+def is_game_over(lives, word):
+	if lives == 0:
+		print("You ran out of lives!")
+		return True
+	elif not word:
+		print("You guessed all the letters in the word!")
+		return True
 	else:
-		lose_life()
+		return False
+
 
 def lose_life(lives):
 	lives = lives - 1;
-	# Every time you lose a life do a check to see if you are out of lives.
-	if lives == 0:
-		game_over = True
+	print(lives)
+	return lives;
 
-def remove_char(char):
+
+def remove_char(char, word):
 	while char in word:
 		word.remove(char)
+	return word
 
 def ask_input():
 	char = ""
 	while True:
 		print("Enter a char to print: ")
 		char = input()
-		if char == len(char) * char[0] and char.isdigit() != True:
+		if char == len(char) * char[0] or char.isdigit() == True:
 			print("The char you wrote is: " + char)
 			return char
 		else:
 			print("You can only enter a char")
 
 def game_setup(word, lives):
-
-	game_over = False
-
-	# Checking if the word is empty
-	if not word:
-		game_over = True
-	while game_over == False:
+	game_over = False;
+	while True:
+		game_over = is_game_over(lives, word)
+		if game_over == True:
+			break
 		print(word)
 		char = ask_input()
-		guess_char(char)
+		# Guess char code
+		if char in word:
+			word = remove_char(char, word)
+		else:
+			lives = lose_life(lives)
 
 
 def main():
@@ -53,7 +58,7 @@ def main():
 	parser.add_argument('lives', type=int, help='Enter the number of lives you want to play with.')
 	args = parser.parse_args()
 
-	game_setup(args.word, args.lives)
+	game_setup(list(args.word), args.lives)
 
 
 
