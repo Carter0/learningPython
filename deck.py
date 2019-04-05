@@ -18,12 +18,14 @@ import collections
 Card = collections.namedtuple('Card', ['rank', 'suit'])
 
 class FrenchDeck:
-    ranks = [str(n) for n in range(2, 11)] + list('JQKA')
-    suits = 'spades diamonds clubs hearts'.split()
+    # This python code is kinda crazy. It is doing what I would do, but it does it more efficiently.
+    rank = [str(n) for n in range(2, 11)] + list('JQKA')
+    suit = 'spades diamonds clubs hearts'.split()
 
+    # These three methods are also interesting. I should consider using them more often.
     def __init__ (self):
         self._cards = [Card(rank, suit) for suit in self.suit
-                                        for rank in self. ranks]
+                                        for rank in self.rank]
     def __len__ (self):
         return len(self._cards)
 
