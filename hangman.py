@@ -1,8 +1,13 @@
 #!/usr/local/bin/python3
 import argparse
+import os
 
 # Decided to try making hangman, thought it could be fun before I get to some web stuff.
 # No front end or GUI for this. Just input word and then guess word.
+
+
+def clear_screen():
+	os.system('cls' if os.name == 'nt' else 'clear')
 
 def is_game_over(lives, word):
 	if lives <= 0:
@@ -55,7 +60,7 @@ def main():
 	parser.add_argument('word', help='Enter the word you want to play with.')
 	parser.add_argument('lives', type=int, help='Enter the number of lives you want to play with.')
 	args = parser.parse_args()
-
+	clear_screen()
 	game_setup(list(args.word), args.lives)
 
 
