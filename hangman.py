@@ -44,8 +44,7 @@ def ask_input():
 
 def game_setup(word, lives):
 	while True:
-		game_over = is_game_over(lives, word)
-		if game_over == True:
+		if is_game_over(lives, word):
 			break
 		char = ask_input()
 		# Guess char code

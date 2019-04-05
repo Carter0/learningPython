@@ -4,8 +4,17 @@
 # I am not an advanced user, but thought it would be cool to go through some of the example in the book and explain why they are so cool.
 # It's all about making things "pythonic", which I assume is just python specific language functionality.
 
+
+## TODO Copy over to notebook later
+
+# The Collections datatypes
+# Apparently collections provides "specialized container datatypes besides pythons built in containers."
+# Basically that just means it is data structures other than lists and sets.
+
 import collections
 
+# I have a "tuple" of named items called cards. Each card has a rank and a suit.
+# A tuple is just an immutable list. You use parens instead of brackets.
 Card = collections.namedtuple('Card', ['rank', 'suit'])
 
 class FrenchDeck:
@@ -20,3 +29,6 @@ class FrenchDeck:
 
     def __getitem__(self, position):
         return self._cards[position]
+
+
+# This code supposedly has a lot of functionality to it. Should be easy to do a lot with very few lines of code.
