@@ -5,6 +5,8 @@ import os
 # Decided to try making hangman, thought it could be fun before I get to some web stuff.
 # No front end or GUI for this. Just input word and then guess word.
 
+# I did this without classes, but perhaps I should go back and make it with one to consider whether the code is easier to understand.
+
 
 def clear_screen():
 	os.system('cls' if os.name == 'nt' else 'clear')
@@ -21,7 +23,7 @@ def is_game_over(lives, word):
 
 
 def lose_life(lives):
-	lives = lives - 1;
+	lives = lives - 1
 	print(lives)
 	return lives;
 
