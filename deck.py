@@ -5,8 +5,6 @@
 # It's all about making things "pythonic", which I assume is just python specific language functionality.
 
 
-## TODO Copy over to notebook later
-
 # The Collections datatypes
 # Apparently collections provides "specialized container datatypes besides pythons built in containers."
 # Basically that just means it is data structures other than lists and sets.
@@ -23,6 +21,10 @@ class FrenchDeck:
     suit = 'spades diamonds clubs hearts'.split()
 
     # These three methods are also interesting. I should consider using them more often.
+    # These are called "special methods" and are called by the python interpreter and not by you.
+    # You write len(my_object) and the interpreter calls my_object.__len__
+    # Init is the only method often called explicitely by the user.
+    # Special methods often have shortcuts and tricks implemented by the compiler and functionality written in the underlying C code.
     def __init__ (self):
         self._cards = [Card(rank, suit) for suit in self.suit
                                         for rank in self.rank]
