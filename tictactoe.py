@@ -14,8 +14,8 @@
 class Tictactoe:
 
     def __init__(self):
-        Players = ('X', 'O')
-        game_over = False
+        self.players = ('X', 'O')
+        self.game_over = False
 
 
     def setup_game():
@@ -23,24 +23,25 @@ class Tictactoe:
 
     def run_game():
         while not game_over:
-            # Ask for continued input from the players
+            x = input("Input the X Position")
+            y = input("Input the Y Position")
             # Fill in the board
             # Check for game over state
 
 class Board:
 
     def __init__(self):
-        # Create a 2d list of spaces
+        self.board = [[Space() for x in range(3)] for Space() in range(3)]
 
 class Space:
 
-    def __init__():
-        filled = False
-        player = None
+    def __init__(self):
+        self.filled = False
+        self.player = None
 
-    def set_space(self, Player):
-        filled = True
-        player = Player
+    def set_space(self, player):
+        self.filled = True
+        self.player = player
 
 
 
