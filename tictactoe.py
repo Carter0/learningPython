@@ -57,9 +57,11 @@ class Board:
         return self.board[x][y].set_space(player)
 
     def __str__(self):
+        strings = []
         for x in range(0, len(self.board)):
             for y in range(0, len(self.board[x])):
-                print(self.get_space(x, y))
+                strings.append(print(self.board[x][y]))
+        return '\n'.join(strings)
 
     ## Function above needs to return something, try adding it to a temp and then returning that??
 
