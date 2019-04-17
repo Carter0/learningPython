@@ -34,14 +34,16 @@ for x, y, z in zip(*board):
     print(x, y, z)
 
 
+
+
+
 class Board:
 
     def __init__(self):
-        self.board = [[Space() for x in range(3)] for y in range(3)]
+        self.board = [[Space(x, y) for x in range(3)] for y in range(3)]
 
-    def __str__():
-        for x in zip(Board):
-            return
+    def get_space(self, x, y):
+        return self.board[x][y]
 
 class Space:
 
@@ -55,6 +57,12 @@ class Space:
         self.filled = True
         self.player = player
 
-
     def __str__(self):
-        print()
+        return f"This is a space at ({self.x}, {self.y}) owned by {self.player} {'and is filled' if self.filled else 'and is empty'}."
+
+
+testing = Board()
+for x in range(0, len(testing.board)):
+    for y in range(0, len(testing.board[x])):
+        print(testing.get_space(x, y))
+

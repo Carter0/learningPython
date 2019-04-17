@@ -31,17 +31,31 @@ class Tictactoe:
 class Board:
 
     def __init__(self):
-        self.board = [[Space() for x in range(3)] for Space() in range(3)]
+        self.board = [[Space(x, y) for x in range(3)] for y in range(3)]
+
+    def get_space(self, x, y):
+        return self.board[x][y]
 
 class Space:
 
-    def __init__(self):
+    def __init__(self, x ,y):
         self.filled = False
         self.player = None
+        self.x = x
+        self.y = y
 
     def set_space(self, player):
         self.filled = True
         self.player = player
+
+    def __str__(self):
+        return f"This is a space at ({self.x}, {self.y}) owned by {self.player} {'and is filled' if self.filled else 'and is empty'}."
+
+
+testing = Board()
+for x in range(0, len(testing.board)):
+    for y in range(0, len(testing.board[x])):
+        print(testing.get_space(x, y))
 
 
 
