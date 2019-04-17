@@ -16,17 +16,34 @@ class Tictactoe:
     def __init__(self):
         self.players = ('X', 'O')
         self.game_over = False
+        self.board = Board()
 
 
-    def setup_game():
-        setup_board()
+    def input_info(self, player_index):
+        x = int(input("Input the X Position"))
+        y = int(input("Input the Y Position"))
+        self.board.fill_board(x, y, self.players[player_index])
+        print(self.board)
 
-    def run_game():
-        while not game_over:
-            x = input("Input the X Position")
-            y = input("Input the Y Position")
-            # Fill in the board
+        #for x in range(0, len(self.board.board)):
+        #    for y in range(0, len(self.board.board[x])):
+        #        print(self.board.get_space(x, y))
+
+    def run_game(self):
+        turn_counter = 0;
+        while not self.game_over:
+            if(turn_counter % 2 == 0):
+                self.input_info(0)
+                turn_counter += 1
+            else:
+                self.input_info(1)
+                turn_counter += 1
+
+
             # Check for game over state
+
+
+
 
 class Board:
 
@@ -35,6 +52,17 @@ class Board:
 
     def get_space(self, x, y):
         return self.board[x][y]
+
+    def fill_board(self, x ,y, player):
+        return self.board[x][y].set_space(player)
+
+    def __str__(self):
+        for x in range(0, len(self.board)):
+            for y in range(0, len(self.board[x])):
+                print(self.get_space(x, y))
+
+    ## Function above needs to return something, try adding it to a temp and then returning that??
+
 
 class Space:
 
@@ -48,14 +76,23 @@ class Space:
         self.filled = True
         self.player = player
 
+    #def __str__(self):
+    #    return f"This is a space at ({self.x}, {self.y}) owned by {self.player} {'and is filled' if self.filled else 'and is empty'}."
+
     def __str__(self):
-        return f"This is a space at ({self.x}, {self.y}) owned by {self.player} {'and is filled' if self.filled else 'and is empty'}."
+        if self.filled:
+            return " "
+        elif self.player is 'X':
+            return 'X'
+        else:
+            return 'O'
 
 
-testing = Board()
-for x in range(0, len(testing.board)):
-    for y in range(0, len(testing.board[x])):
-        print(testing.get_space(x, y))
+
+#testing = Board()
+#for x in range(0, len(testing.board)):
+#    for y in range(0, len(testing.board[x])):
+#        print(testing.get_space(x, y))
 
 
 
@@ -63,6 +100,7 @@ for x in range(0, len(testing.board)):
 
 def main():
     game = Tictactoe()
+    game.run_game()
 
 
 
