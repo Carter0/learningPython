@@ -36,6 +36,34 @@ class Tictactoe:
         self.board.fill_board(x, y, self.players[player_index])
         self.board.print_board()
 
+
+    def check_full(self):
+        is_full = True
+        for column in self.board.board:
+            for space in column:
+                if space.space is '#':
+                    is_full = False
+        return is_full
+
+    # By using sets, it should shrink the list size down to one because sets cant have duplicates
+    def check_column(self):
+        for column in self.board.board:
+            if len(set(column)) is 1:
+                return True
+        return False
+
+    # I think this is right, sorta hard to visualize it.
+    def check_row(self):
+        for i in range(3):
+            if self.board.board[0][i].get_space() == self.board.board[1][i].get_space() == self.board.board[2][i].get_space():
+                if self.board.board[0][i].get_space() != '#':
+                    return True
+        return False
+
+    def check_diagonal(self):
+        return self.board.board[0][0].get_space() == self.board.board[1][1].get_space() == self.board.board[2][2].get_space() and self.board.board[0][0].get_space() != '#'
+
+
     def run_game(self):
         turn_counter = 0;
         while not self.game_over:
@@ -47,12 +75,8 @@ class Tictactoe:
                 print("O player turn")
                 self.input_info(1)
                 turn_counter += 1
-
-
-            # Check for game over state
-
-
-
+            # Game over conditions
+            self.game_over = self.check_full() or self.check_column() or self.check_row() or self.check_diagonal()
 
 
 class Board:
@@ -81,6 +105,9 @@ class Space:
         self.space = space
 
     def __str__(self):
+        return self.space
+
+    def get_space(self):
         return self.space
 
 
