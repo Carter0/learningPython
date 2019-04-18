@@ -20,10 +20,20 @@ class Tictactoe:
 
     def out_of_bounds(self, x, y):
         if x > 2 or y > 2 or x < 0 or y < 0:
-            print("X and Y must be between 0 and 2")
+            print("X and Y must be between 0 and 2.")
             return False
         else:
             return True
+
+    def double_entry(self, x, y):
+        if self.board.board[x][y].get_space() is 'O' or self.board.board[x][y].get_space() is 'X':
+            print("Space is already filled.")
+            return False
+        else:
+            return True
+
+    def valid_input(self, x, y):
+        return self.double_entry(x, y) and self.out_of_bounds(x, y)
 
 
     def input_info(self, player_index):
@@ -31,7 +41,7 @@ class Tictactoe:
         while not valid_input:
             x = int(input("Input the X Position"))
             y = int(input("Input the Y Position"))
-            valid_input = self.out_of_bounds(x, y)
+            valid_input = self.valid_input(x, y)
 
         self.board.fill_board(x, y, self.players[player_index])
         self.board.print_board()
@@ -75,8 +85,13 @@ class Tictactoe:
                 print("O player turn")
                 self.input_info(1)
                 turn_counter += 1
+
             # Game over conditions
             self.game_over = self.check_full() or self.check_column() or self.check_row() or self.check_diagonal()
+
+            # You should specify which player won!
+            if self.game_over:
+                print("Game Over!")
 
 
 class Board:
