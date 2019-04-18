@@ -33,7 +33,11 @@ class Tictactoe:
             return True
 
     def valid_input(self, x, y):
-        return self.double_entry(x, y) and self.out_of_bounds(x, y)
+        if not self.out_of_bounds(x, y):
+            return False
+        elif not self.double_entry(x, y):
+            return False
+        else: return True
 
 
     def input_info(self, player_index):
