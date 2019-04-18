@@ -43,8 +43,8 @@ class Tictactoe:
     def input_info(self, player_index):
         valid_input = False
         while not valid_input:
-            x = int(input("Input the X Position"))
-            y = int(input("Input the Y Position"))
+            x = int(input("Input the Row Position: "))
+            y = int(input("Input the Column Position: "))
             valid_input = self.valid_input(x, y)
 
         self.board.fill_board(x, y, self.players[player_index])
@@ -112,7 +112,7 @@ class Board:
         for column in self.board:
             print('\n')
             for item in column:
-                print(item, end='')
+                print(item, end=' ')
         print('\n')
 
 
