@@ -51,16 +51,21 @@ for comment in comments:
 
 # Another way of dealing with more comments, better it seems.
 
-submission = reddit.submission(url='https://www.reddit.com/r/programming/comments/bh67bz/raycasting_engine_in_factorio_vanilla_017/')
+#submission = reddit.submission(url='https://www.reddit.com/r/programming/comments/bh67bz/raycasting_engine_in_factorio_vanilla_017/')
 #submission.comments.replace_more(limit=None)
 #for top_level_comment in submission.comments:
 #     for second_level_comment in top_level_comment.replies:
 #        print(second_level_comment.body)
 
 # This will output all the front level comments, then all the second level comments, then all the third etc.
-submission.comments.replace_more(limit=None)
-for comment in submission.comments.list():
-    print(comment.body)
+#submission.comments.replace_more(limit=None)
+#for comment in submission.comments.list():
+#    print(comment.body)
+
+print(reddit.user)
+
+for subreddit in reddit.user.subreddits():
+    print(subreddit.title)
 
 
 
