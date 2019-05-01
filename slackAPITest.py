@@ -5,17 +5,31 @@ import json
 import os
 
 # Messing around with the slack api now. Trying to make a simple bot.
-# For now I will just start with posting a message
+
+SLACK_BOT_TOKEN = os.environ["SLACK_BOT_TOKEN"]
+
+
+# Need a way to grab the specific info I am looking for
+"""
+url = 'https://slack.com/api/conversations.list'
+params = {'token': SLACK_BOT_TOKEN}
+headers = {'content-type': 'application/json'}
+response = requests.get(url, params=params, headers=headers)
+print(response.text)
+"""
+
+
+
+webhook_url = 'https://hooks.slack.com/services/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'
+
 
 # You have to retrieve the token as an environment variable, make sure to put it in.
-# I want to programmatically find my channel id before I do any of this.
-"""
-SLACK_BOT_TOKEN = os.environ["SLACK_BOT_TOKEN"]
-url = 'https://slack.com/api/chat.postMessage'
+# Found a good way of doing it with a webhook url set up for this app.
 headers = {'content-type': 'application/json'}
-payload = {'token': SLACK_BOT_TOKEN, 'channel': 'YOUR_CHANNEL_ID', 'text': 'Hello, world'}
-response = requests.post(url, data=json.dumps(payload), headers=headers)
-"""
+payload = {'text': 'Hello, world'}
+response = requests.post(webhook_url, data=json.dumps(payload), headers=headers)
+
+print(response)
 
 
 
