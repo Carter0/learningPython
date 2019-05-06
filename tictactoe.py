@@ -116,6 +116,10 @@ class Board:
         print('\n')
 
 
+# Looking back on this class a while later, the setters and getters possibly could have been done with dunder methods __getitem__ and __setitem__.
+# Not sure how much refactoring would go into this, but I don't see the point in changing it since it is already working.
+# This also could have been done with properties.
+# Interesting to see how many ways there are to implement this class.
 class Space:
     def __init__(self, space='#'):
         self.space = space
