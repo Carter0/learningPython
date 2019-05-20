@@ -1,10 +1,11 @@
 #!/usr/local/bin/python3
-
+'''
 import requests
 import json
 import os
 import datetime
 from slackclient import SlackClient
+'''
 
 
 # Messing around with the slack api now. Trying to make a simple bot that prints the time.
@@ -46,7 +47,7 @@ sc.api_call(
   channel="CJ9S864SG",
   text="This is the python wrapper way :)"
 )
-"""
+
 
 # Now trying to schedule it
 slack_token = os.environ["SLACK_BOT_TOKEN"]
@@ -58,6 +59,22 @@ sc.api_call(
   text="This is a timed message! :):)",
   post_at="1556824221"
 )
+"""
+
+# Here is the updated 2.0.1 slackclient post message version
+
+import slack
+client = slack.WebClient(token=os.environ['SLACK_API_TOKEN'])
+response = client.chat_postMessage(
+        channel='CJ9S864SG',
+        text="Hello world!")
+
+assert response["ok"]
+assert response["message"]["text"] == "Hello world!"
+
+
+
+
 
 
 
